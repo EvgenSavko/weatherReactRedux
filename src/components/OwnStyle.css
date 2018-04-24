@@ -1,0 +1,28 @@
+.red{
+    border: 1px solid red;
+}
+.width{
+    width: 730px;
+}
+
+.width50{
+    width: 50%;
+}
+.padding{
+    padding: 0px;
+}
+.none{
+    display: none
+}
+.borderMy1{
+    padding-top: 15px;
+
+    border: 2px solid BlueViolet;
+  
+}
+.borderMy{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 2px solid BlueViolet ;
+  
+}
