@@ -18,7 +18,7 @@ class Forma extends Component {
     this.setState({ name: e.target.value, input: e.target });
   }
 
-  onGetName = e => {
+onGetName = e => {
     e.preventDefault();
     if (this.state.name != undefined) {
       this.props.onAddCity(this.state.name);
@@ -28,27 +28,30 @@ class Forma extends Component {
           this.state.name
         }&type=like&APPID=fe7b0d9704ac5510ac37676e142dc409`,
       )
-        .then(response => response.json())
+        .then( response => response.json())
         .then(data => {
           console.log('data', data);
-          let objectName = data.name;
-          let objectTemp = (data.main.temp - 273).toFixed(0);
-          let objectHumidity = data.main.humidity;
-          let objectWind = data.wind.speed;
-          let objectDescription = data.weather[0].description;
-          let objectIcon = data.weather[0].icon;
-          let objectCoord1 = data.coord.lat;
-          let objectCoord2 = data.coord.lon;
-          this.props.onGetCityObj(
-            objectName,
-            objectTemp,
-            objectHumidity,
-            objectWind,
-            objectDescription,
-            objectIcon,
-            objectCoord1,
-            objectCoord2,
-          );
+          if (data.cod == 404 ) alert('error#404 city not found')
+          else {
+            let objectName = data.name;
+            let objectTemp = (data.main.temp - 273).toFixed(0);
+            let objectHumidity = data.main.humidity;
+            let objectWind = data.wind.speed;
+            let objectDescription = data.weather[0].description;
+            let objectIcon = data.weather[0].icon;
+            let objectCoord1 = data.coord.lat;
+            let objectCoord2 = data.coord.lon;
+            this.props.onGetCityObj(
+              objectName,
+              objectTemp,
+              objectHumidity,
+              objectWind,
+              objectDescription,
+              objectIcon,
+              objectCoord1,
+              objectCoord2,
+            );
+          }
         });
       //
       this.setState({ name: '' });
